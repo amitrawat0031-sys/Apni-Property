@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Apni Property",
+    "slug": "apni-property",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.apniproperty.app"
+    }
+  }
+}
