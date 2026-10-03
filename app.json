@@ -7,6 +7,9 @@
     "userInterfaceStyle": "light",
     "android": {
       "package": "com.apniproperty.app"
-    }
+    },
+    "plugins": [
+      "expo-status-bar"
+    ]
   }
 }
