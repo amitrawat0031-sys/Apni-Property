@@ -262,7 +262,47 @@ export default function App() {
       <Field label={t.description} value={form.description} onChange={v => setForm({...form,description:v})}/>
       <Field label={t.phone} value={form.phone} onChange={v => setForm({...form,phone:v})}/>
 
-      <TouchableOpacity style={styles.primary} onPress={() => Alert.alert(t.formTitle, t.submitted)}>
+      <TouchableOpacity
+  style={styles.primary}
+  onPress={async () => {
+    const { error } = await supabase.from("properties").insert([{
+      title: form.type || "Property Listing",
+      property_type: form.type,
+      listing_type: form.transaction,
+      district: form.district,
+      tehsil: form.tehsil,
+      village: form.village,
+      area: Number(form.area) || null,
+      gata: form.gata,
+      khata: form.khata,
+      khatauni: form.khatauni,
+      price: Number(form.price) || null,
+      description: form.description,
+      owner_phone: form.phone
+    }]);
+
+    if (error) {
+      Alert.alert("Error", error.message);
+      return;
+    }
+
+    Alert.alert("Success", "Property successfully listed.");
+    setForm({
+      type: "",
+      transaction: "Sale",
+      district: "",
+      tehsil: "",
+      village: "",
+      area: "",
+      gata: "",
+      khata: "",
+      khatauni: "",
+      price: "",
+      description: "",
+      phone: ""
+    });
+  }}
+>
         <Text style={styles.primaryText}>{t.submit}</Text>
       </TouchableOpacity>
     </ScrollView>
