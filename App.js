@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -10,6 +10,7 @@ import {
   Alert
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { supabase } from "./supabase";
 
 const demoProperties = [
   {
@@ -47,6 +48,19 @@ const demoProperties = [
 export default function App() {
   const [lang, setLang] = useState("hi");
   const [screen, setScreen] = useState("home");
+  const [properties, setProperties] = useState(demoProperties);
+
+  useEffect(() => {
+    const loadProperties = async () => {
+      const { data, error } = await supabase.from("properties").select("*").order("created_at", { ascending: false });
+      if (error) {
+        console.log("SUPABASE PROPERTIES ERROR:", error.message);
+        return;
+      }
+      if (data) setProperties(data);
+    };
+    loadProperties();
+  }, []);
   const [search, setSearch] = useState("");
   const [form, setForm] = useState({
     type: "",
