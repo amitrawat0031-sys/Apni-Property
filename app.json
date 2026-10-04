@@ -2,14 +2,21 @@
   "expo": {
     "name": "Apni Property",
     "slug": "apni-property",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "android": {
-      "package": "com.apniproperty.app"
+      "package": "com.apniproperty.app",
+      "versionCode": 2
     },
     "plugins": [
       "expo-status-bar"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bb46e06d-a0f7-46b2-9844-586482721c66"
+      }
+    },
+    "icon": "./ApniProperty_icon.png"
   }
 }
